@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Чёрный Бархат — студия эстетики тела, Оренбург</title>
+<meta name="description" content="Чёрный Бархат — студия эстетика твоего тела в ТК «Территория», Оренбург. Аппаратный массаж, онлайн-запись.">
+<meta name="theme-color" content="#0b0a09">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0a09;
+  --bg-2:#141210;
+  --card:#181512;
+  --line:rgba(201,168,106,.22);
+  --gold:#c9a86a;
+  --gold-hi:#e3c88f;
+  --text:#f1ebe0;
+  --muted:#a59c8e;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Manrope",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+section{padding:88px 0}
+.eyebrow{font:500 12px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1}
+h2{font-size:clamp(34px,5vw,52px);margin:14px 0 36px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--gold);background:var(--gold);color:#0b0a09;font:600 14px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:16px 28px;border-radius:999px;cursor:pointer;text-decoration:none;transition:background .2s,color .2s,transform .2s}
+.btn:hover{background:var(--gold-hi);border-color:var(--gold-hi)}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--gold)}
+.btn.ghost:hover{background:rgba(201,168,106,.1)}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:0 0 72px;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,9,.35) 0%,rgba(11,10,9,.15) 35%,rgba(11,10,9,.92) 88%,var(--bg) 100%)}
+.hero .wrap{position:relative;z-index:1;width:100%}
+.hero h1{font-size:clamp(54px,10vw,112px);font-weight:400;letter-spacing:.01em;margin:16px 0 14px}
+.hero p{font-size:clamp(16px,2vw,19px);color:#ddd4c4;max-width:520px;margin-bottom:32px}
+
+/* services */
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.card h3{font-size:27px}
+.card .tag{font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.card .desc{color:var(--muted);font-size:15px}
+.card .price{font:500 34px/1 var(--serif);color:var(--gold-hi);margin-top:auto;padding-top:8px}
+.card .price small{font:400 14px/1 var(--sans);color:var(--muted)}
+.card .btn{align-self:flex-start}
+.card.minor{padding:22px 24px;gap:10px}
+.card.minor h3{font-size:23px}
+.card.minor .price{font-size:17px;font-family:var(--sans);color:var(--muted)}
+.sub{color:var(--muted);margin:42px 0 18px;font-size:15px}
+
+/* gift */
+.gift{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.gift .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.gift img{border-radius:18px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.gift h2{margin-bottom:20px}
+.gift ul{list-style:none;margin:0 0 32px;display:grid;gap:12px}
+.gift li{padding-left:28px;position:relative;color:#ddd4c4}
+.gift li::before{content:"";position:absolute;left:0;top:.7em;width:14px;height:1px;background:var(--gold)}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gallery img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px}
+
+/* reviews */
+.reviews{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.review{border:1px solid var(--line);border-radius:18px;padding:28px;background:var(--card)}
+.review q{display:block;font:400 italic 22px/1.4 var(--serif);quotes:"«" "»";margin-bottom:18px}
+.review .who{font-size:14px;color:var(--muted)}
+.stars{color:var(--gold);letter-spacing:.2em;font-size:13px;margin-bottom:14px}
+.rating{color:var(--muted);margin:-20px 0 32px;font-size:15px}
+
+/* contacts */
+.contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px 40px;margin-bottom:40px}
+.contacts dt{font:500 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.contacts dd{font-size:17px}
+.contacts dd a{text-decoration:none;border-bottom:1px solid var(--line)}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+
+footer{padding:36px 0 110px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center}
+
+/* floating */
+.fab{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:40;width:84px;height:84px;border-radius:50%;border:0;background:var(--gold);color:#0b0a09;font:600 11px/1.15 var(--sans);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.55),0 0 0 6px rgba(201,168,106,.16)}
+.fab:hover{background:var(--gold-hi)}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.72);backdrop-filter:blur(4px)}
+.modal.open{display:flex}
+.sheet{width:100%;max-width:440px;max-height:calc(100svh - 32px);overflow:auto;background:var(--bg-2);border:1px solid var(--line);border-radius:22px;padding:30px 26px 26px;position:relative}
+.sheet h3{font-size:32px;margin-bottom:6px}
+.sheet .lead{color:var(--muted);font-size:14px;margin-bottom:22px}
+.close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--text);font-size:20px;cursor:pointer}
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:14px}
+input,select{display:block;width:100%;margin-top:6px;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:#0e0c0b;color:var(--text);font:400 16px var(--sans);appearance:none;-webkit-appearance:none}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:40px}
+input:focus,select:focus{outline:none;border-color:var(--gold)}
+input.err{border-color:#d0675b}
+.hint{font-size:13px;color:var(--gold-hi);text-align:center;margin:8px 0 12px;min-height:1.3em;opacity:.0;transition:opacity .2s}
+.hint.show{opacity:1}
+.sheet .actions .btn{flex:1 1 160px}
+
+@media (max-width:820px){
+  section{padding:64px 0}
+  .gift .wrap{grid-template-columns:1fr;gap:32px}
+  .gift img{aspect-ratio:4/3}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .hero{padding-bottom:56px}
+}
+@media (max-width:480px){
+  .wrap{padding:0 16px}
+  .card{padding:22px}
+  .fab{width:74px;height:74px;font-size:10px;right:16px}
+  .hero .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="images/hero.jpg" alt="Интерьер студии «Чёрный Бархат»">
+  <div class="wrap">
+    <div class="eyebrow">Студия эстетика твоего тела · Оренбург</div>
+    <h1>Чёрный Бархат</h1>
+    <p>Аппаратный массаж всего тела в уютной студии в ТК «Территория». По предварительной записи.</p>
+    <button class="btn" data-book>Записаться</button>
+  </div>
+</header>
+
+<section id="services">
+  <div class="wrap">
+    <div class="eyebrow">Услуги и цены</div>
+    <h2>Аппаратный массаж</h2>
+    <div class="grid">
+      <article class="card">
+        <span class="tag">Знакомство со студией</span>
+        <h3>Аппаратный вибромассаж всего тела</h3>
+        <div class="price">1 000 ₽</div>
+        <button class="btn" data-book="Знакомство со студией: аппаратный вибромассаж всего тела — 1 000 ₽">Записаться</button>
+      </article>
+      <article class="card">
+        <span class="tag">Разовый сеанс</span>
+        <h3>Аппаратный вибромассаж всего тела</h3>
+        <div class="price">1 500 ₽</div>
+        <button class="btn" data-book="Аппаратный вибромассаж всего тела (разовый сеанс) — 1 500 ₽">Записаться</button>
+      </article>
+    </div>
+
+    <p class="sub">Также в студии</p>
+    <div class="grid">
+      <article class="card minor">
+        <h3>Антицеллюлитный массаж</h3>
+        <div class="price">Стоимость уточняйте</div>
+        <button class="btn ghost" data-book="Антицеллюлитный массаж">Записаться</button>
+      </article>
+      <article class="card minor">
+        <h3>Релаксирующий массаж</h3>
+        <div class="price">Стоимость уточняйте</div>
+        <button class="btn ghost" data-book="Релаксирующий массаж">Записаться</button>
+      </article>
+      <article class="card minor">
+        <h3>Лимфодренаж</h3>
+        <div class="price">Стоимость уточняйте</div>
+        <button class="btn ghost" data-book="Лимфодренаж">Записаться</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="gift" id="gift">
+  <div class="wrap">
+    <img src="images/gift.jpg" alt="Подарочный сертификат студии «Чёрный Бархат»" loading="lazy">
+    <div>
+      <div class="eyebrow">К Новому году</div>
+      <h2>Подарочный сертификат</h2>
+      <ul>
+        <li>На любую услугу студии</li>
+        <li>Или на любую сумму</li>
+      </ul>
+      <button class="btn" data-book="Подарочный сертификат" data-title="Оформить сертификат">Оформить</button>
+    </div>
+  </div>
+</section>
+
+<section id="photos">
+  <div class="wrap">
+    <div class="eyebrow">Студия</div>
+    <h2>Атмосфера</h2>
+    <div class="gallery">
+      <img src="images/studio-1.jpg" alt="Кабинет для массажа" loading="lazy">
+      <img src="images/studio-2.jpg" alt="Кабинет с зеркалом в подсветке" loading="lazy">
+      <img src="images/studio-3.jpg" alt="Вывеска студии на золотой стене" loading="lazy">
+      <img src="images/studio-4.jpg" alt="Детали интерьера студии" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="eyebrow">Отзывы в 2ГИС</div>
+    <h2>Что говорят гости</h2>
+    <p class="rating">Оценка 5 из 5 · 10 оценок</p>
+    <div class="reviews">
+      <figure class="review">
+        <div class="stars">★★★★★</div>
+        <q>Отличный аппаратный массаж, очень приятная атмосфера, шикарный мастер!</q>
+        <figcaption class="who">Оксана Клюева, октябрь 2026</figcaption>
+      </figure>
+      <figure class="review">
+        <div class="stars">★★★★★</div>
+        <q>Все очень понравилось и атмосфера и массаж и сервис. Очень расслабилась после сложного рабочего дня.</q>
+        <figcaption class="who">Галина Корнейчук, август 2026</figcaption>
+      </figure>
+      <figure class="review">
+        <div class="stars">★★★★★</div>
+        <q>Очень уютное место в нашем городе! Классная атмосфера и массаж! Довольна</q>
+        <figcaption class="who">Оксана Алиева, август 2026</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="wrap">
+    <div class="eyebrow">Контакты</div>
+    <h2>Как нас найти</h2>
+    <dl class="contacts">
+      <div><dt>Адрес</dt><dd>ТК «Территория», 1 этаж<br>микрорайон 70 лет ВЛКСМ, 16/1, Оренбург</dd></div>
+      <div><dt>Часы работы</dt><dd>Ежедневно с 11:00 до 19:00<br>по предварительной записи</dd></div>
+      <div><dt>Телефон</dt><dd><a href="tel:+79228600513">+7 922 860-05-13</a></dd></div>
+    </dl>
+    <div class="actions">
+      <button class="btn" data-book>Записаться</button>
+      <a class="btn ghost" href="tel:+79228600513">Позвонить</a>
+      <a class="btn ghost" href="https://max.ru/join/zp8wcI4fJ_1UHyf5t-a6Pe3hzSiYe2vXKTkWvrSCDAQ" target="_blank" rel="noopener">Max</a>
+    </div>
+  </div>
+</section>
+
+<footer>Черновик. Цены и условия уточняются</footer>
+
+<button class="fab" data-book aria-label="Записаться">Запи&shy;саться</button>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <form class="sheet" id="form" novalidate>
+    <button type="button" class="close" data-close aria-label="Закрыть">×</button>
+    <h3 id="mTitle">Запись</h3>
+    <p class="lead">Заполните поля, и мы соберём готовую заявку для чата в Max.</p>
+    <label>Имя<input name="name" autocomplete="name" required></label>
+    <label>Телефон<input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7" required></label>
+    <label>Услуга
+      <select name="service" id="service">
+        <option>Знакомство со студией: аппаратный вибромассаж всего тела — 1 000 ₽</option>
+        <option>Аппаратный вибромассаж всего тела (разовый сеанс) — 1 500 ₽</option>
+        <option>Антицеллюлитный массаж</option>
+        <option>Релаксирующий массаж</option>
+        <option>Лимфодренаж</option>
+        <option>Подарочный сертификат</option>
+      </select>
+    </label>
+    <label>Удобное время<input name="time" placeholder="Например, суббота после 15:00"></label>
+    <p class="hint" id="hint">Текст заявки скопирован, вставьте его в чат</p>
+    <div class="actions">
+      <button type="submit" class="btn">Отправить в Max</button>
+      <a class="btn ghost" href="tel:+79228600513">Позвонить</a>
+    </div>
+  </form>
+</div>
+
+<script>
+(function(){
+  var MAX_URL = "https://max.ru/join/zp8wcI4fJ_1UHyf5t-a6Pe3hzSiYe2vXKTkWvrSCDAQ";
+  var modal = document.getElementById("modal");
+  var form = document.getElementById("form");
+  var service = document.getElementById("service");
+  var title = document.getElementById("mTitle");
+  var hint = document.getElementById("hint");
+
+  function open(svc, ttl){
+    if (svc) service.value = svc;
+    title.textContent = ttl || "Запись";
+    hint.classList.remove("show");
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+    setTimeout(function(){ form.name.focus(); }, 50);
+  }
+  function close(){
+    modal.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll("[data-book]").forEach(function(b){
+    b.addEventListener("click", function(){ open(b.getAttribute("data-book"), b.getAttribute("data-title")); });
+  });
+  modal.addEventListener("click", function(e){ if (e.target === modal || e.target.hasAttribute("data-close")) close(); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") close(); });
+
+  function copy(text){
+    var ok = false;
+    try {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.opacity = "0"; ta.style.top = "0";
+      document.body.appendChild(ta);
+      ta.select(); ta.setSelectionRange(0, text.length);
+      ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+    } catch (e) {}
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).catch(function(){});
+      ok = true;
+    }
+    return ok;
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = form.name.value.trim();
+    var phone = form.phone.value.trim();
+    form.name.classList.toggle("err", !name);
+    form.phone.classList.toggle("err", phone.replace(/\D/g, "").length < 10);
+    if (!name || phone.replace(/\D/g, "").length < 10) return;
+
+    var lines = [
+      "Здравствуйте! Хочу записаться в «Чёрный Бархат».",
+      "Имя: " + name,
+      "Телефон: " + phone,
+      "Услуга: " + service.value
+    ];
+    var t = form.time.value.trim();
+    if (t) lines.push("Удобное время: " + t);
+    copy(lines.join("\n"));
+
+    hint.classList.add("show");
+    window.open(MAX_URL, "_blank");
+  });
+})();
+</script>
+</body>
+</html>
