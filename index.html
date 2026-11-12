@@ -91,7 +91,7 @@ h2{font-size:clamp(34px,5vw,52px);margin:14px 0 36px}
 footer{padding:36px 0 110px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center}
 
 /* floating */
-.fab{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:40;width:84px;height:84px;border-radius:50%;border:0;background:var(--gold);color:#0b0a09;font:600 11px/1.15 var(--sans);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.55),0 0 0 6px rgba(201,168,106,.16)}
+.fab{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:40;width:84px;height:84px;border-radius:50%;border:0;background:var(--gold);color:#0b0a09;font:600 13px/1.1 var(--sans);letter-spacing:.01em;cursor:pointer;padding:0;box-shadow:0 10px 30px rgba(0,0,0,.55),0 0 0 6px rgba(201,168,106,.16)}
 .fab:hover{background:var(--gold-hi)}
 
 /* modal */
@@ -120,7 +120,8 @@ input.err{border-color:#d0675b}
 @media (max-width:480px){
   .wrap{padding:0 16px}
   .card{padding:22px}
-  .fab{width:74px;height:74px;font-size:10px;right:16px}
+  .fab{width:80px;height:80px;font-size:12.5px;right:16px}
+  .hero{padding-bottom:116px}
   .hero .btn{width:100%}
 }
 </style>
@@ -249,7 +250,7 @@ input.err{border-color:#d0675b}
 
 <footer>Черновик. Цены и условия уточняются</footer>
 
-<button class="fab" data-book aria-label="Записаться">Запи&shy;саться</button>
+<button class="fab" data-book aria-label="Записаться">Записаться</button>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <form class="sheet" id="form" novalidate>
