@@ -106,8 +106,18 @@ input,select{display:block;width:100%;margin-top:6px;padding:14px 16px;border-ra
 select{background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:40px}
 input:focus,select:focus{outline:none;border-color:var(--gold)}
 input.err{border-color:#d0675b}
-.hint{font-size:13px;color:var(--gold-hi);text-align:center;margin:8px 0 12px;min-height:1.3em;opacity:.0;transition:opacity .2s}
-.hint.show{opacity:1}
+.done{text-align:center;padding:6px 0 4px}
+.done-icon{width:56px;height:56px;margin:0 auto 14px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:26px}
+.done-title{font:500 30px/1.15 var(--serif);margin-bottom:12px}
+.done-text{font-size:18px;line-height:1.5;color:var(--text)}
+.done-text.admin{text-align:center;font-size:15px;color:var(--gold-hi);margin-top:14px}
+.countdown{margin-top:14px;font-size:14px;color:var(--muted);min-height:1.4em}
+#reqText{display:block;width:100%;margin:16px 0 0;padding:14px 16px;border-radius:12px;border:1px solid var(--gold);background:#0e0c0b;color:var(--text);font:400 16px/1.5 var(--sans);resize:none;user-select:text;-webkit-user-select:text}
+#reqText[hidden]{display:none}
+.actions.col{flex-direction:column;margin-top:22px}
+.actions.col .btn{flex:none;width:100%}
+.back{display:block;margin:16px auto 0;background:none;border:0;color:var(--muted);font:400 14px var(--sans);cursor:pointer}
+[hidden]{display:none!important}
 .sheet .actions .btn{flex:1 1 160px}
 
 @media (max-width:820px){
@@ -243,7 +253,7 @@ input.err{border-color:#d0675b}
     <div class="actions">
       <button class="btn" data-book>Записаться</button>
       <a class="btn ghost" href="tel:+79228600513">Позвонить</a>
-      <a class="btn ghost" href="https://max.ru/join/zp8wcI4fJ_1UHyf5t-a6Pe3hzSiYe2vXKTkWvrSCDAQ" target="_blank" rel="noopener">Max</a>
+      <a class="btn ghost" data-max href="https://max.ru/" target="_blank" rel="noopener">Написать в Max</a>
     </div>
   </div>
 </section>
@@ -255,47 +265,83 @@ input.err{border-color:#d0675b}
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
   <form class="sheet" id="form" novalidate>
     <button type="button" class="close" data-close aria-label="Закрыть">×</button>
-    <h3 id="mTitle">Запись</h3>
-    <p class="lead">Заполните поля, и мы соберём готовую заявку для чата в Max.</p>
-    <label>Имя<input name="name" autocomplete="name" required></label>
-    <label>Телефон<input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7" required></label>
-    <label>Услуга
-      <select name="service" id="service">
-        <option>Знакомство со студией: аппаратный вибромассаж всего тела — 1 000 ₽</option>
-        <option>Аппаратный вибромассаж всего тела (разовый сеанс) — 1 500 ₽</option>
-        <option>Антицеллюлитный массаж</option>
-        <option>Релаксирующий массаж</option>
-        <option>Лимфодренаж</option>
-        <option>Подарочный сертификат</option>
-      </select>
-    </label>
-    <label>Удобное время<input name="time" placeholder="Например, суббота после 15:00"></label>
-    <p class="hint" id="hint">Текст заявки скопирован, вставьте его в чат</p>
-    <div class="actions">
-      <button type="submit" class="btn">Отправить в Max</button>
-      <a class="btn ghost" href="tel:+79228600513">Позвонить</a>
+    <div id="step1">
+      <h3 id="mTitle">Запись</h3>
+      <p class="lead">Заполните поля, и мы соберём готовую заявку для чата в Max.</p>
+      <label>Имя<input name="name" autocomplete="name" required></label>
+      <label>Телефон<input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7" required></label>
+      <label>Услуга
+        <select name="service" id="service">
+          <option>Знакомство со студией: аппаратный вибромассаж всего тела — 1 000 ₽</option>
+          <option>Аппаратный вибромассаж всего тела (разовый сеанс) — 1 500 ₽</option>
+          <option>Антицеллюлитный массаж</option>
+          <option>Релаксирующий массаж</option>
+          <option>Лимфодренаж</option>
+          <option>Подарочный сертификат</option>
+        </select>
+      </label>
+      <label>Удобное время<input name="time" placeholder="Например, суббота после 15:00"></label>
+      <div class="actions">
+        <button type="submit" class="btn">Отправить в Max</button>
+        <a class="btn ghost" href="tel:+79228600513">Позвонить</a>
+      </div>
+    </div>
+
+    <div id="step2" hidden>
+      <div class="done" id="doneOk">
+        <div class="done-icon">✓</div>
+        <p class="done-title">Заявка скопирована</p>
+        <p class="done-text">Сейчас откроется Max: вставьте текст в чат (долгое нажатие → Вставить) и нажмите отправить</p>
+        <p class="countdown" id="countdown"></p>
+      </div>
+      <div class="done" id="doneFail" hidden>
+        <p class="done-title">Не удалось скопировать автоматически</p>
+        <p class="done-text">Выделите текст заявки ниже, скопируйте его и вставьте в чат Max</p>
+      </div>
+      <p class="done-text admin" id="adminNote" hidden>В Max найдите администратора по номеру +7 922 860-05-13</p>
+      <textarea id="reqText" readonly rows="6" hidden></textarea>
+      <div class="actions col">
+        <a class="btn" id="openMax" href="#" target="_blank" rel="noopener">Открыть Max</a>
+        <button type="button" class="btn ghost" id="copyAgain">Скопировать заявку ещё раз</button>
+        <a class="btn ghost" href="tel:+79228600513">Позвонить</a>
+      </div>
+      <button type="button" class="back" id="back">← Изменить заявку</button>
     </div>
   </form>
 </div>
 
 <script>
 (function(){
-  var MAX_URL = "https://max.ru/join/zp8wcI4fJ_1UHyf5t-a6Pe3hzSiYe2vXKTkWvrSCDAQ";
-  var modal = document.getElementById("modal");
-  var form = document.getElementById("form");
-  var service = document.getElementById("service");
-  var title = document.getElementById("mTitle");
-  var hint = document.getElementById("hint");
+  /* Ссылка на личный профиль администратора в Max, вида https://max.ru/u/...
+     Пока не подставлена, открывается приложение Max, а клиенту показывается номер для поиска. */
+  var MAX_PROFILE_LINK = "MAX_PROFILE_LINK";
 
+  var hasProfile = /^https:\/\/max\.ru\/u\/\S+/.test(MAX_PROFILE_LINK);
+  var MAX_URL = hasProfile ? MAX_PROFILE_LINK : "https://max.ru/";
+
+  var $ = function(id){ return document.getElementById(id); };
+  var modal = $("modal"), form = $("form"), service = $("service"), title = $("mTitle");
+  var step1 = $("step1"), step2 = $("step2"), reqText = $("reqText");
+  var timer = null, text = "";
+
+  document.querySelectorAll("[data-max]").forEach(function(a){ a.href = MAX_URL; });
+  $("openMax").href = MAX_URL;
+  $("adminNote").hidden = hasProfile;
+
+  function showStep(n){
+    step1.hidden = n !== 1; step2.hidden = n !== 2;
+    if (n === 1) clearTimeout(timer);
+  }
   function open(svc, ttl){
     if (svc) service.value = svc;
     title.textContent = ttl || "Запись";
-    hint.classList.remove("show");
+    showStep(1);
     modal.classList.add("open");
     document.body.style.overflow = "hidden";
     setTimeout(function(){ form.elements.name.focus(); }, 50);
   }
   function close(){
+    clearTimeout(timer);
     modal.classList.remove("open");
     document.body.style.overflow = "";
   }
@@ -305,45 +351,83 @@ input.err{border-color:#d0675b}
   });
   modal.addEventListener("click", function(e){ if (e.target === modal || e.target.hasAttribute("data-close")) close(); });
   document.addEventListener("keydown", function(e){ if (e.key === "Escape") close(); });
+  $("back").addEventListener("click", function(){ showStep(1); });
 
-  function copy(text){
+  /* Копирование: сначала синхронный execCommand (надёжен в iOS Safari внутри нажатия),
+     затем Clipboard API. Результат — Promise<boolean>. */
+  function copy(str){
     var ok = false;
     try {
       var ta = document.createElement("textarea");
-      ta.value = text; ta.setAttribute("readonly", "");
-      ta.style.position = "fixed"; ta.style.opacity = "0"; ta.style.top = "0";
+      ta.value = str; ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;font-size:16px";
       document.body.appendChild(ta);
-      ta.select(); ta.setSelectionRange(0, text.length);
+      ta.focus(); ta.select(); ta.setSelectionRange(0, str.length);
       ok = document.execCommand("copy");
       document.body.removeChild(ta);
-    } catch (e) {}
+    } catch (e) { ok = false; }
+    if (ok) return Promise.resolve(true);
     if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(text).catch(function(){});
-      ok = true;
+      return navigator.clipboard.writeText(str).then(function(){ return true; }, function(){ return false; });
     }
-    return ok;
+    return Promise.resolve(false);
+  }
+
+  function showResult(ok){
+    $("doneOk").hidden = !ok;
+    $("doneFail").hidden = ok;
+    reqText.hidden = ok;
+    if (!ok) { reqText.focus(); reqText.select(); }
+  }
+
+  function startCountdown(){
+    var left = 2;
+    var cd = $("countdown");
+    cd.textContent = "Открываем Max через " + left + "…";
+    clearTimeout(timer);
+    (function tick(){
+      timer = setTimeout(function(){
+        left--;
+        if (left > 0) { cd.textContent = "Открываем Max через " + left + "…"; tick(); }
+        else { cd.textContent = "Если Max не открылся, нажмите «Открыть Max»"; window.location.href = MAX_URL; }
+      }, 1000);
+    })();
   }
 
   form.addEventListener("submit", function(e){
     e.preventDefault();
-    var name = form.elements.name.value.trim();
-    var phone = form.elements.phone.value.trim();
-    form.elements.name.classList.toggle("err", !name);
-    form.elements.phone.classList.toggle("err", phone.replace(/\D/g, "").length < 10);
-    if (!name || phone.replace(/\D/g, "").length < 10) return;
+    var f = form.elements;
+    var name = f.name.value.trim(), phone = f.phone.value.trim(), time = f.time.value.trim();
+    var phoneOk = phone.replace(/\D/g, "").length >= 10;
+    f.name.classList.toggle("err", !name);
+    f.phone.classList.toggle("err", !phoneOk);
+    if (!name || !phoneOk) return;
 
-    var lines = [
-      "Здравствуйте! Хочу записаться в «Чёрный Бархат».",
-      "Имя: " + name,
-      "Телефон: " + phone,
-      "Услуга: " + service.value
-    ];
-    var t = form.elements.time.value.trim();
-    if (t) lines.push("Удобное время: " + t);
-    copy(lines.join("\n"));
+    text = "Здравствуйте! Хочу записаться.\n" +
+      "Имя: " + name + "\n" +
+      "Телефон: " + phone + "\n" +
+      "Услуга: " + service.value + "\n" +
+      "Удобное время: " + (time || "не указано");
+    reqText.value = text;
 
-    hint.classList.add("show");
-    window.open(MAX_URL, "_blank");
+    var p = copy(text);
+    showStep(2);
+    p.then(function(ok){
+      showResult(ok);
+      if (ok) startCountdown();
+    });
+  });
+
+  $("copyAgain").addEventListener("click", function(){
+    var btn = this;
+    copy(text).then(function(ok){
+      showResult(ok);
+      if (ok) {
+        $("countdown").textContent = "";
+        btn.textContent = "Скопировано ✓";
+        setTimeout(function(){ btn.textContent = "Скопировать заявку ещё раз"; }, 2000);
+      }
+    });
   });
 })();
 </script>
