@@ -293,7 +293,7 @@ input.err{border-color:#d0675b}
     hint.classList.remove("show");
     modal.classList.add("open");
     document.body.style.overflow = "hidden";
-    setTimeout(function(){ form.name.focus(); }, 50);
+    setTimeout(function(){ form.elements.name.focus(); }, 50);
   }
   function close(){
     modal.classList.remove("open");
@@ -326,10 +326,10 @@ input.err{border-color:#d0675b}
 
   form.addEventListener("submit", function(e){
     e.preventDefault();
-    var name = form.name.value.trim();
-    var phone = form.phone.value.trim();
-    form.name.classList.toggle("err", !name);
-    form.phone.classList.toggle("err", phone.replace(/\D/g, "").length < 10);
+    var name = form.elements.name.value.trim();
+    var phone = form.elements.phone.value.trim();
+    form.elements.name.classList.toggle("err", !name);
+    form.elements.phone.classList.toggle("err", phone.replace(/\D/g, "").length < 10);
     if (!name || phone.replace(/\D/g, "").length < 10) return;
 
     var lines = [
@@ -338,7 +338,7 @@ input.err{border-color:#d0675b}
       "Телефон: " + phone,
       "Услуга: " + service.value
     ];
-    var t = form.time.value.trim();
+    var t = form.elements.time.value.trim();
     if (t) lines.push("Удобное время: " + t);
     copy(lines.join("\n"));
 
